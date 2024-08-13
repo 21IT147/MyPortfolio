@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="assets/css/styles.css">
+
+    <!-- =====BOX ICONS===== -->
+    <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
+    <!-- =====FONT AWESOME===== -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+    <title>Portfolio website complete</title>
+
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        .contact__message {
+            display: none;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        .contact__message.success {
+            color: green;
+        }
+        .contact__message.error {
+            color: red;
+        }
+
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0,0,0);
+            background-color: rgba(0,0,0,0.4);
+            padding-top: 60px;
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 600px;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .modal-img {
+            float: left;
+            width: 50%;
+        }
+
+        .modal-details {
+            float: right;
+            width: 50%;
+        }
+
+        .modal-details h2 {
+            margin: 0;
+        }
+
+        .modal-details p {
+            margin: 10px 0;
+        }
+
+        .modal-details a {
+            color: #1a73e8;
+            text-decoration: none;
+        }
+
+        .modal-details a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <!--===== HEADER =====-->
+    <header class="l-header">
+        <nav class="nav bd-grid">
+            <div>
+                <a href="#" class="nav__logo">Keval</a>
+            </div>
+
+            <div class="nav__menu" id="nav-menu">
+                <ul class="nav__list">
+                    <li class="nav__item"><a href="#home" class="nav__link active-link">Home</a></li>
+                    <li class="nav__item"><a href="#about" class="nav__link">About</a></li>
+                    <li class="nav__item"><a href="#skills" class="nav__link">Skills</a></li>
+                    <li class="nav__item"><a href="#experience" class="nav__link">Experience</a></li>
+                    <li class="nav__item"><a href="#education" class="nav__link">Education</a></li>
+                    <li class="nav__item"><a href="#work" class="nav__link">Work</a></li>
+                    <li class="nav__item"><a href="#contact" class="nav__link">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="nav__toggle" id="nav-toggle">
+                <i class='bx bx-menu'></i>
+            </div>
+        </nav>
+    </header>
+
+    <main class="l-main">
+        <!--===== HOME =====-->
+        <section class="home bd-grid" id="home">
+            <div class="home__data">
+                <h1 class="home__title">Hi,<br>I'am <span class="home__title-color">Keval</span><br>Full Stack<br> Developer</h1>
+
+                <a href="#contact" class="button">Contact</a>
+            </div>
+
+            <div class="home__social">
+                <a href="https://www.linkedin.com/in/keval-sheth-82a5a0230" class="home__social-icon"><i class='bx bxl-linkedin'></i></a>
+                <a href="https://www.instagram.com/_keval_25_/" class="home__social-icon"><i class='bx bxl-instagram' ></i></a>
+                <a href="https://github.com/21IT147" class="home__social-icon"><i class='bx bxl-github' ></i></a>
+            </div>
+
+            <div class="home__img">
+                <svg class="home__blob" viewBox="0 0 479 467" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                    <mask id="mask0" mask-type="alpha">
+                        <path d="M9.19024 145.964C34.0253 76.5814 114.865 54.7299 184.111 29.4823C245.804 6.98884 311.86 -14.9503 370.735 14.143C431.207 44.026 467.948 107.508 477.191 174.311C485.897 237.229 454.931 294.377 416.506 344.954C373.74 401.245 326.068 462.801 255.442 466.189C179.416 469.835 111.552 422.137 65.1576 361.805C17.4835 299.81 -17.1617 219.583 9.19024 145.964Z"/>
+                    </mask>
+                    <g mask="url(#mask0)">
+                        <path d="M9.19024 145.964C34.0253 76.5814 114.865 54.7299 184.111 29.4823C245.804 6.98884 311.86 -14.9503 370.735 14.143C431.207 44.026 467.948 107.508 477.191 174.311C485.897 237.229 454.931 294.377 416.506 344.954C373.74 401.245 326.068 462.801 255.442 466.189C179.416 469.835 111.552 422.137 65.1576 361.805C17.4835 299.81 -17.1617 219.583 9.19024 145.964Z"/>
+                        <image class="home__blob-img" x="50" y="60" href="assets/img/perfil.png"/>
+                    </g>
+                </svg>
+            </div>
+        </section>
+
+        <!--===== ABOUT =====-->
+        <section class="about section" id="about">
+            <h2 class="section-title">About</h2>
+        
+            <div class="about__container bd-grid">
+                <div class="about__img">
+                    <img src="assets/img/about.jpg" alt="">
+                </div>
+        
+                <div>
+                    <h2 class="about__subtitle">I am Keval</h2>
+                    <p class="about__text" style="text-align: justify;">
+                        I am a passionate Full Stack Developer with a strong background in web development. Currently studying at Charusat University, I have excelled academically, securing top 1% in NPTEL's Database Management System exam and 1st position in a university coding contest.
+                    </p>
+                    <p class="about__text" style="text-align: justify;">
+                        Professionally, I have interned at Internauts Infotech as a Backend Developer and am currently working at Axire Infotech as a Full Stack Developer. My expertise includes Node.js, React, JavaScript, Java, and database management.
+                    </p>
+                    <p class="about__text" style="text-align: justify;">
+                        I am dedicated to creating dynamic and efficient web solutions. Let's connect and explore opportunities to innovate together.
+                    </p>
+                </div>
+            </div>
+        </section>
+        
+        
+        
+
+        <!--===== SKILLS =====-->
+        <section class="skills section" id="skills">
+    <h2 class="section-title">Skills</h2>
+
+    <div class="skills__container bd-grid">          
+        <div>
+            <h2 class="skills__subtitle">Professional Skills</h2>
+            <p class="skills__text" style="text-align: justify;">
+                As a Full Stack Developer, I bring a diverse skill set in web development technologies. My proficiency spans both frontend and backend frameworks, allowing me to create comprehensive and dynamic web applications.
+            </p>
+            <p class="skills__text" style="text-align: justify;">
+                My expertise includes Node.js for server-side programming, React for building interactive user interfaces, and JavaScript for enhancing web functionality. I am also skilled in Java and database management, ensuring robust and scalable applications.
+            </p>
+        </div>
+        
+        <div>
+            <div class="skills__data">
+                <div class="skills__names">
+                    <i class='bx bxl-nodejs skills__icon'></i>
+                    <span class="skills__name">Node.js</span>
+                </div>
+                <div class="skills__bar skills__nodejs"></div>
+                <div>
+                    <span class="skills__percentage">70%</span>
+                </div>
+            </div>
+            <div class="skills__data">
+                <div class="skills__names">
+                    <i class='bx bxl-react skills__icon'></i>
+                    <span class="skills__name">React</span>
+                </div>
+                <div class="skills__bar skills__react"></div>
+                <div>
+                    <span class="skills__percentage">70%</span>
+                </div>
+            </div>
+            <div class="skills__data">
+                <div class="skills__names">
+                    <i class='bx bxl-javascript skills__icon'></i>
+                    <span class="skills__name">JavaScript</span>
+                </div>
+                <div class="skills__bar skills__js"></div>
+                <div>
+                    <span class="skills__percentage">80%</span>
+                </div>
+            </div>
+            <div class="skills__data">
+                <div class="skills__names">
+                    <i class="fab fa-java skills__icon"></i>
+                    <span class="skills__name">Java</span>
+                </div>
+                <div class="skills__bar skills__java"></div>
+                <div>
+                    <span class="skills__percentage">70%</span>
+                </div>
+            </div>
+            <div class="skills__data">
+                <div class="skills__names">
+                    <i class='bx bx-server skills__icon' ></i>
+                    <span class="skills__name">Database</span>
+                </div>
+                <div class="skills__bar skills__database"></div>
+                <div>
+                    <span class="skills__percentage">60%</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+        <!--===== EXPERIENCE =====-->
+        <section class="experience section" id="experience">
+            <h2 class="section-title">Experience</h2>
+
+            <div class="experience__container bd-grid">
+                <div class="experience__content">
+                    <h3 class="experience__title">Internauts Infotech</h3>
+                    <span class="experience__subtitle">Backend Developer Intern - May 2023 - June 2023</span>
+                    <p class="experience__description">Developed and maintained backend services for various applications, working with a team to improve system performance and reliability.</p>
+                </div>
+                <div class="experience__content">
+                    <h3 class="experience__title">Axire Infotech</h3>
+                    <span class="experience__subtitle">Full Stack Developer - May 2024 - Present</span>
+                    <p class="experience__description">Designed and implemented full-stack solutions for clients, collaborating closely with frontend and backend teams to deliver high-quality software products.</p>
+                </div>
+            </div>
+        </section>
+
+        <!--===== EDUCATION =====-->
+        <section class="education section" id="education">
+            <h2 class="section-title">Education</h2>
+
+            <div class="education__container bd-grid">
+                <div class="education__content">
+                    <h3 class="education__title">Sett R.J.J</h3>
+                    <span class="education__subtitle">SSC - April 2019</span>
+                    <span class="education__percentage">Percentage: 89.66% - Highest in Maths: 97</span>
+                </div>
+                <div class="education__content">
+                    <h3 class="education__title">Sett R.J.J</h3>
+                    <span class="education__subtitle">HSC - May 2021</span>
+                    <span class="education__percentage">Percentage: 89.34% - Highest in Maths: 94</span>
+                </div>
+            </div>
+        </section>
+
+        <!--===== WORK =====-->
+<section class="work section" id="work">
+    <h2 class="section-title">Work</h2>
+
+    <div class="work__container bd-grid">
+        <div class="work__img" onclick="openModal('work1')">
+            <img src="assets/img/work1.jpg" alt="">
+        </div>
+        <div class="work__img" onclick="openModal('work2')">
+            <img src="assets/img/work2.jpg" alt="">
+        </div>
+        <div class="work__img" onclick="openModal('work3')">
+            <img src="assets/img/work3.jpg" alt="">
+        </div>
+        <div class="work__img" onclick="openModal('work4')">
+            <img src="assets/img/work4.jpg" alt="">
+        </div>
+        <div class="work__img" onclick="openModal('work5')">
+            <img src="assets/img/work3.jpg" alt="">
+        </div>
+        <div class="work__img" onclick="openModal('work6')">
+            <img src="assets/img/work4.jpg" alt="">
+        </div>
+        <!-- More work images can be added here -->
+    </div>
+</section>
+
+<!-- Modal for My Profile Space -->
+<div id="work1-modal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal('work1')">&times;</span>
+        <div class="modal-img">
+            <img src="assets/img/work1.jpg" alt="">
+        </div>
+        <div class="modal-details">
+            <h2>My Profile Space</h2>
+            <p>Platform for users who want to create their own portfolio from their details.</p>
+            <p>Tech Stack: ReactJS, Supabase, TypeScript</p>
+            <p><a href="https://github.com/RutvikJR/my-profile-space-admin" class="github-link" target="_blank">GitHub Repository</a></p>
+        </div>
+    </div>
+</div>
+
+<!-- Modal for Open Source Weeknd -->
+<div id="work2-modal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal('work2')">&times;</span>
+        <div class="modal-img">
+            <img src="assets/img/work2.jpg" alt="">
+        </div>
+        <div class="modal-details">
+            <h2>Open Source Weeknd</h2>
+            <p>Platform for users who want to create custom events as well as join different events such as webinars and TED Talks.</p>
+            <p>Tech Stack: ReactJS, NodeJS, Express, MongoDB</p>
+            <p><a href="https://github.com/21IT147/OpenSourceWeekend" class="github-link" target="_blank">GitHub Repository</a></p>
+        </div>
+    </div>
+</div>
+
+<!-- Modal for Text Extraction App -->
+<div id="work3-modal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal('work3')">&times;</span>
+        <div class="modal-img">
+            <img src="assets/img/work3.jpg" alt="">
+        </div>
+        <div class="modal-details">
+            <h2>Text Extraction App</h2>
+            <p>Application to extract text from any image in more than 150 languages and then share the extracted file via any platform.</p>
+            <p>Tech Stack: React Native, NodeJS, MongoDB</p>
+            <p><a href="https://github.com/21IT147/Text_Extraction_app" class="github-link" target="_blank">GitHub Repository</a></p>
+        </div>
+    </div>
+</div>
+
+<!-- Modal for My Fitness Station -->
+<div id="work4-modal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal('work4')">&times;</span>
+        <div class="modal-img">
+            <img src="assets/img/work4.jpg" alt="">
+        </div>
+        <div class="modal-details">
+            <h2>My Fitness Station</h2>
+            <p>Web application with basic features related to daily fitness goals.</p>
+            <p>Tech Stack: HTML, CSS, JavaScript</p>
+            <p><a href="https://github.com/21IT147/MY_FITNESS_STATION" class="github-link" target="_blank">GitHub Repository</a></p>
+        </div>
+    </div>
+</div>
+
+<!-- Modal for Quiz App -->
+<div id="work5-modal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal('work5')">&times;</span>
+        <div class="modal-img">
+            <img src="assets/img/work5.jpg" alt="">
+        </div>
+        <div class="modal-details">
+            <h2>Quiz App</h2>
+            <p>Platform for users who want to play quizzes and see results.</p>
+            <p>Tech Stack: HTML, CSS, JavaScript</p>
+            <p><a href="https://github.com/21IT147/QuizApp" class="github-link" target="_blank">GitHub Repository</a></p>
+        </div>
+    </div>
+</div>
+
+<!-- Modal for News Application -->
+<div id="work6-modal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal('work6')">&times;</span>
+        <div class="modal-img">
+            <img src="assets/img/work6.jpg" alt="">
+        </div>
+        <div class="modal-details">
+            <h2>News Application</h2>
+            <p>Mobile app to view daily news.</p>
+            <p>Tech Stack: Flutter, API</p>
+            <p><a href="https://github.com/21IT147/NewsApp" class="github-link" target="_blank">GitHub Repository</a></p>
+        </div>
+    </div>
+</div>
+
+
+
+
+        <!--===== CONTACT =====-->
+        <section class="contact section" id="contact">
+            <h2 class="section-title">Contact</h2>
+
+            <div class="contact__container bd-grid">
+                <form action="https://formspree.io/f/your-form-id" method="POST" class="contact__form" id="contact-form">
+                    <input type="hidden" name="_subject" value="New submission!">
+
+                    <div class="contact__inputs">
+                        <input type="text" name="name" placeholder="Name" class="contact__input" required>
+                        <input type="email" name="email" placeholder="Email" class="contact__input" required>
+                    </div>
+
+                    <textarea name="message" placeholder="Message" class="contact__input" required></textarea>
+
+                    <input type="submit" value="Send" class="contact__button button">
+                </form>
+                <div class="contact__info">
+                    <h3 class="contact__subtitle">Get in touch with me</h3>
+                    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=ksheth630@gmail.com" target="_blank">
+                        <i class="bx bx-envelope skills__icon"></i>
+                    </a>
+                    <span class="contact__description">ksheth630@gmail.com</span>
+                </div>
+                
+            </div>
+        </section>
+    </main>
+
+    <!--===== FOOTER =====-->
+    <footer class="footer">
+        <p class="footer__title">Keval Sheth</p>
+        <div class="footer__social">
+            <a href="https://www.linkedin.com/in/keval-sheth-82a5a0230" class="footer__icon"><i class='bx bxl-linkedin' ></i></a>
+            <a href="https://www.instagram.com/_keval_25_/" class="footer__icon"><i class='bx bxl-instagram' ></i></a>
+            <a href="https://github.com/21IT147" class="footer__icon"><i class='bx bxl-github' ></i></a>
+        </div>
+        <p>© 2023 Keval. All right reserved</p>
+    </footer>
+
+    <!--===== SCROLL REVEAL =====-->
+    <script src="https://unpkg.com/scrollreveal"></script>
+
+    <!--===== MAIN JS =====-->
+    <script src="assets/js/main.js"></script>
+    <script>
+        function openModal(modalId) {
+            document.getElementById(modalId + '-modal').style.display = 'block';
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId + '-modal').style.display = 'none';
+        }
+
+        window.onclick = function(event) {
+            if (event.target.className === 'modal') {
+                closeModal('work1');
+                closeModal('work2');
+            }
+        }
+    </script>
+</body>
+</html>
+ 

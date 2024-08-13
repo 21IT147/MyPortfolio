@@ -310,21 +310,33 @@ img {
   border-radius: 0.5rem;
 }
 
-/* ===== WORK =====*/
+/* ===== WORK ===== */
 .work__container {
   row-gap: 2rem;
 }
+
 .work__img {
   box-shadow: 0px 4px 25px rgba(14, 36, 49, 0.15);
   border-radius: 0.5rem;
   overflow: hidden;
+  width: 100%; /* The container takes full width */
+  height: 100%; /* The container takes full height */
+  display: flex; /* Flexbox for easy image centering */
+  align-items: center; /* Center image vertically */
+  justify-content: center; /* Center image horizontally */
 }
+
 .work__img img {
-  transition: 1s;
+  width: 100%; /* Image fills the container's width */
+  height: 100%; /* Image fills the container's height */
+  object-fit: cover; /* Ensures the image covers the container without distortion */
+  transition: transform 1s; /* Smooth transition for hover effect */
 }
+
 .work__img img:hover {
-  transform: scale(1.1);
+  transform: scale(1.1); /* Slight zoom effect on hover */
 }
+
 
 /* ===== CONTACT =====*/
 .contact__input {

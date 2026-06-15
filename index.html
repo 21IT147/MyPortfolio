@@ -3,473 +3,1126 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <link rel="stylesheet" href="assets/css/styles.css">
-
-    <!-- =====BOX ICONS===== -->
     <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
-    <!-- =====FONT AWESOME===== -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-
-    <title>Portfolio website complete</title>
-
+    <title>Keval Sheth – Associate Java Developer</title>
     <style>
-        html {
-            scroll-behavior: smooth;
-        }
-        .contact__message {
-            display: none;
-            margin-top: 10px;
-            font-weight: bold;
-        }
-        .contact__message.success {
-            color: green;
-        }
-        .contact__message.error {
-            color: red;
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;700&display=swap');
+
+        :root {
+            --bg: #0d0f14;
+            --surface: #161b24;
+            --surface2: #1e2535;
+            --accent: #4f8ef7;
+            --accent2: #7c3aed;
+            --text: #e8eaf0;
+            --text-muted: #8892a4;
+            --border: #232b3a;
+            --radius: 12px;
         }
 
-        /* Modal styles */
-        .modal {
-            display: none;
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+            line-height: 1.7;
+        }
+
+        /* ── NAV ── */
+        .nav {
             position: fixed;
-            z-index: 1;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgb(0,0,0);
-            background-color: rgba(0,0,0,0.4);
-            padding-top: 60px;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            background: rgba(13,15,20,0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
         }
 
-        .modal-content {
-            background-color: #fefefe;
-            margin: 5% auto;
-            padding: 20px;
-            border: 1px solid #888;
-            width: 80%;
+        .nav__logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 1.3rem;
+            color: var(--accent);
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+
+        .nav__list {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav__link {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 500;
+            letter-spacing: 0.3px;
+            transition: color 0.2s;
+        }
+
+        .nav__link:hover { color: var(--text); }
+
+        .nav__toggle { display: none; color: var(--text); font-size: 1.5rem; cursor: pointer; }
+
+        /* ── SECTIONS ── */
+        section {
+            padding: 6rem 3rem;
+            max-width: 1300px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        .section-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 0.75rem;
+        }
+
+        .section-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 3rem;
+            letter-spacing: -0.5px;
+        }
+
+        /* ── HERO ── */
+        #home {
+            min-height: 100vh;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+
+            max-width: 1600px;
+            width: 100%;
+            margin: 0 auto;
+
+            padding-left: 8%;
+            padding-right: 8%;
+            gap: 4rem;
+        }
+        .hero__content {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .hero__image {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero__image img {
+            width: 350px;
+            height: 350px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 4px solid var(--accent);
+            box-shadow: 0 20px 50px rgba(79, 142, 247, 0.25);
+            transition: transform 0.3s ease;
+        }
+
+        .hero__image img:hover {
+            transform: scale(1.03);
+        }
+        .hero__eyebrow {
+            font-size: 0.875rem;
+            color: var(--accent);
+            font-weight: 500;
+            letter-spacing: 1px;
+            margin-bottom: 1rem;
+        }
+
+        .hero__name {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(3rem, 8vw, 5.5rem);
+            font-weight: 700;
+            letter-spacing: -2px;
+            line-height: 1;
+            margin-bottom: 1rem;
+        }
+
+        .hero__name .highlight {
+            background: linear-gradient(135deg, var(--accent), var(--accent2));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero__role {
+            font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+            color: var(--text-muted);
+            font-weight: 400;
+            margin-bottom: 1.5rem;
             max-width: 600px;
         }
 
-        .close {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
+        .hero__summary {
+            color: var(--text-muted);
+            max-width: 620px;
+            margin-bottom: 2.5rem;
+            font-size: 1rem;
         }
 
-        .close:hover,
-        .close:focus {
-            color: black;
+        .hero__actions {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.75rem;
+            border-radius: var(--radius);
+            font-weight: 600;
+            font-size: 0.9rem;
             text-decoration: none;
+            transition: all 0.2s;
             cursor: pointer;
+            border: none;
         }
 
-        .modal-img {
-            float: left;
-            width: 50%;
+        .btn--primary {
+            background: var(--accent);
+            color: #fff;
         }
 
-        .modal-details {
-            float: right;
-            width: 50%;
+        .btn--primary:hover { background: #3a7de8; transform: translateY(-1px); }
+
+        .btn--outline {
+            background: transparent;
+            color: var(--text);
+            border: 1px solid var(--border);
         }
 
-        .modal-details h2 {
-            margin: 0;
+        .btn--outline:hover { border-color: var(--accent); color: var(--accent); }
+
+        .hero__socials {
+            display: flex;
+            gap: 1rem;
         }
 
-        .modal-details p {
-            margin: 10px 0;
-        }
-
-        .modal-details a {
-            color: #1a73e8;
+        .social-link {
+            width: 42px; height: 42px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
             text-decoration: none;
+            font-size: 1.1rem;
+            transition: all 0.2s;
         }
 
-        .modal-details a:hover {
-            text-decoration: underline;
+        .social-link:hover { border-color: var(--accent); color: var(--accent); }
+
+        /* ── ABOUT ── */
+        .about__grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 4rem;
+            align-items: start;
         }
+
+        .about__card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 2rem;
+        }
+
+        .about__stat {
+            margin-bottom: 1.5rem;
+        }
+
+        .about__stat-value {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--accent);
+        }
+
+        .about__stat-label {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            letter-spacing: 0.5px;
+        }
+
+        .about__text p { color: var(--text-muted); margin-bottom: 1rem; }
+        .about__text p:last-child { margin-bottom: 0; }
+
+        /* ── SKILLS ── */
+        .skills__grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 1rem;
+        }
+
+        .skill-chip {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 0.75rem 1rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--text-muted);
+            text-align: center;
+            transition: all 0.2s;
+        }
+
+        .skill-chip:hover { border-color: var(--accent); color: var(--text); }
+
+        .skills__category {
+            margin-bottom: 2.5rem;
+        }
+
+        .skills__category-title {
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--accent2);
+            margin-bottom: 1rem;
+        }
+
+        /* ── EXPERIENCE ── */
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0; top: 0; bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--accent), var(--accent2), transparent);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 3rem;
+            padding-left: 1.5rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -2.4rem; top: 0.4rem;
+            width: 10px; height: 10px;
+            border-radius: 50%;
+            background: var(--accent);
+            border: 2px solid var(--bg);
+        }
+
+        .timeline-item--current::before { background: var(--accent2); }
+
+        .timeline-badge {
+            display: inline-block;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--accent2);
+            background: rgba(124, 58, 237, 0.12);
+            border: 1px solid rgba(124, 58, 237, 0.3);
+            border-radius: 4px;
+            padding: 0.15rem 0.6rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-company {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 0.25rem;
+        }
+
+        .timeline-role {
+            font-size: 0.9rem;
+            color: var(--accent);
+            font-weight: 500;
+            margin-bottom: 0.25rem;
+        }
+
+        .timeline-period {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-bottom: 0.75rem;
+        }
+
+        .timeline-desc {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* ── PROJECTS ── */
+        .projects__grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .project-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 1.75rem;
+            transition: all 0.25s;
+        }
+
+        .project-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 40px rgba(79, 142, 247, 0.1);
+        }
+
+        .project-card__title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 0.75rem;
+        }
+
+        .project-card__desc {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 1.25rem;
+            line-height: 1.6;
+        }
+
+        .project-card__tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+        }
+
+        .tag {
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            padding: 0.25rem 0.6rem;
+            border-radius: 4px;
+            background: rgba(79, 142, 247, 0.1);
+            color: var(--accent);
+            border: 1px solid rgba(79, 142, 247, 0.2);
+        }
+
+        /* ── EDUCATION ── */
+        .edu__grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .edu-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 1.75rem;
+        }
+
+        .edu-card__degree {
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+
+        .edu-card__school {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 0.25rem;
+        }
+
+        .edu-card__period {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 0.75rem;
+        }
+
+        .edu-card__highlight {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+        }
+
+        .edu-card__highlight span {
+            color: var(--accent2);
+            font-weight: 600;
+        }
+
+        /* ── CERTIFICATIONS ── */
+        .cert__list {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .cert-chip {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 0.75rem 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            font-size: 0.875rem;
+            color: var(--text-muted);
+        }
+
+        .cert-chip i { color: var(--accent); }
+
+        /* ── CONTACT ── */
+        .contact__grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: start;
+        }
+
+        .contact__info p {
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+        }
+
+        .contact__links { display: flex; flex-direction: column; gap: 0.75rem; }
+
+        .contact__link {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+
+        .contact__link:hover { color: var(--accent); }
+        .contact__link i { font-size: 1.1rem; color: var(--accent); width: 20px; }
+
+        .contact__form { display: flex; flex-direction: column; gap: 1rem; }
+
+        .contact__input {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 0.85rem 1rem;
+            color: var(--text);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            outline: none;
+            transition: border-color 0.2s;
+            resize: vertical;
+        }
+
+        .contact__input::placeholder { color: var(--text-muted); }
+        .contact__input:focus { border-color: var(--accent); }
+
+        /* ── FOOTER ── */
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 2rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .footer__socials { display: flex; gap: 1rem; }
+        .footer__social {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: color 0.2s;
+        }
+        .footer__social:hover { color: var(--accent); }
+
+        /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+
+        section {
+            padding: 4rem 1.25rem;
+        }
+
+        .section-title {
+            margin-bottom: 2rem;
+        }
+
+        .nav {
+            padding: 1rem;
+        }
+
+        .nav__toggle {
+            display: block;
+        }
+
+        .nav__menu {
+            position: fixed;
+            top: 70px;
+            left: -100%;
+            width: 100%;
+            background: var(--surface);
+            border-left: 1px solid var(--border);
+            transition: 0.3s;
+            padding: 1.5rem;
+        }
+
+        .nav__menu.open {
+            left: 0;
+        }
+
+        .nav__list {
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        #home {
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            text-align: center;
+
+            padding-left: 1.25rem;
+            padding-right: 1.25rem;
+            min-height: auto;
+            padding-top: 7rem;
+        }
+
+        .hero__content {
+            align-items: center;
+            order: 2;
+        }
+
+        .hero__image {
+            order: 1;
+        }
+
+        .hero__image img {
+            width: 220px;
+            height: 220px;
+        }
+
+        .hero__summary {
+            max-width: 100%;
+        }
+
+        .hero__actions {
+            justify-content: center;
+        }
+
+        .hero__socials {
+            justify-content: center;
+        }
+
+        .about__grid {
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        .about__card {
+            padding: 1.5rem;
+        }
+
+        .about__text {
+            text-align: left;
+        }
+
+        .skills__grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .timeline {
+            padding-left: 1.5rem;
+        }
+
+        .timeline-item {
+            padding-left: 1rem;
+        }
+
+        .projects__grid {
+            grid-template-columns: 1fr;
+        }
+
+        .project-card {
+            padding: 1.25rem;
+        }
+
+        .edu__grid {
+            grid-template-columns: 1fr;
+        }
+
+        .contact__grid {
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        .contact__form {
+            width: 100%;
+        }
+
+        .contact__input {
+            width: 100%;
+        }
+
+        .contact__link {
+            font-size: 0.85rem;
+            word-break: break-word;
+        }
+
+        .contact__link i {
+            flex-shrink: 0;
+        }
+
+        .btn {
+            width: 100%;
+            justify-content: center;
+        }
+
+        .hero__actions .btn {
+            width: auto;
+        }
+
+        footer {
+            justify-content: center;
+            text-align: center;
+        }
+}
     </style>
 </head>
 <body>
-    <!--===== HEADER =====-->
-    <header class="l-header">
-        <nav class="nav bd-grid">
-            <div>
-                <a href="#" class="nav__logo">Keval</a>
-            </div>
 
-            <div class="nav__menu" id="nav-menu">
-                <ul class="nav__list">
-                    <li class="nav__item"><a href="#home" class="nav__link active-link">Home</a></li>
-                    <li class="nav__item"><a href="#about" class="nav__link">About</a></li>
-                    <li class="nav__item"><a href="#skills" class="nav__link">Skills</a></li>
-                    <li class="nav__item"><a href="#experience" class="nav__link">Experience</a></li>
-                    <li class="nav__item"><a href="#education" class="nav__link">Education</a></li>
-                    <li class="nav__item"><a href="#work" class="nav__link">Work</a></li>
-                    <li class="nav__item"><a href="#contact" class="nav__link">Contact</a></li>
-                </ul>
-            </div>
-
-            <div class="nav__toggle" id="nav-toggle">
-                <i class='bx bx-menu'></i>
-            </div>
-        </nav>
-    </header>
-
-    <main class="l-main">
-        <!--===== HOME =====-->
-        <section class="home bd-grid" id="home">
-            <div class="home__data">
-                <h1 class="home__title">Hi,<br>I'am <span class="home__title-color">Keval</span><br>Full Stack<br> Developer</h1>
-
-                <a href="#contact" class="button">Contact</a>
-            </div>
-
-            <div class="home__social">
-                <a href="https://www.linkedin.com/in/keval-sheth-82a5a0230" class="home__social-icon"><i class='bx bxl-linkedin'></i></a>
-                <a href="https://www.instagram.com/_keval_25_/" class="home__social-icon"><i class='bx bxl-instagram' ></i></a>
-                <a href="https://github.com/21IT147" class="home__social-icon"><i class='bx bxl-github' ></i></a>
-            </div>
-
-            <div class="home__img">
-                <svg class="home__blob" viewBox="0 0 479 467" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                    <mask id="mask0" mask-type="alpha">
-                        <path d="M9.19024 145.964C34.0253 76.5814 114.865 54.7299 184.111 29.4823C245.804 6.98884 311.86 -14.9503 370.735 14.143C431.207 44.026 467.948 107.508 477.191 174.311C485.897 237.229 454.931 294.377 416.506 344.954C373.74 401.245 326.068 462.801 255.442 466.189C179.416 469.835 111.552 422.137 65.1576 361.805C17.4835 299.81 -17.1617 219.583 9.19024 145.964Z"/>
-                    </mask>
-                    <g mask="url(#mask0)">
-                        <path d="M9.19024 145.964C34.0253 76.5814 114.865 54.7299 184.111 29.4823C245.804 6.98884 311.86 -14.9503 370.735 14.143C431.207 44.026 467.948 107.508 477.191 174.311C485.897 237.229 454.931 294.377 416.506 344.954C373.74 401.245 326.068 462.801 255.442 466.189C179.416 469.835 111.552 422.137 65.1576 361.805C17.4835 299.81 -17.1617 219.583 9.19024 145.964Z"/>
-                        <image class="home__blob-img" x="50" y="60" href="assets/img/perfil.png"/>
-                    </g>
-                </svg>
-            </div>
-        </section>
-
-        <!--===== ABOUT =====-->
-        <section class="about section" id="about">
-            <h2 class="section-title">About</h2>
-        
-            <div class="about__container bd-grid">
-                <div class="about__img">
-                    <img src="assets/img/about.jpg" alt="">
-                </div>
-        
-                <div>
-                    <h2 class="about__subtitle">I am Keval</h2>
-                    <p class="about__text" style="text-align: justify;">
-                        I am a passionate Full Stack Developer with a strong background in web development. Currently studying at Charusat University, I have excelled academically, securing top 1% in NPTEL's Database Management System exam and 1st position in a university coding contest.
-                    </p>
-                    <p class="about__text" style="text-align: justify;">
-                        Professionally, I have interned at Internauts Infotech as a Backend Developer and am currently working at Axire Infotech as a Full Stack Developer. My expertise includes Node.js, React, JavaScript, Java, and database management.
-                    </p>
-                    <p class="about__text" style="text-align: justify;">
-                        I am dedicated to creating dynamic and efficient web solutions. Let's connect and explore opportunities to innovate together.
-                    </p>
-                </div>
-            </div>
-        </section>
-        
-        
-        
-
-        <!--===== SKILLS =====-->
-        <section class="skills section" id="skills">
-    <h2 class="section-title">Skills</h2>
-
-    <div class="skills__container bd-grid">          
-        <div>
-            <h2 class="skills__subtitle">Professional Skills</h2>
-            <p class="skills__text" style="text-align: justify;">
-                As a Full Stack Developer, I bring a diverse skill set in web development technologies. My proficiency spans both frontend and backend frameworks, allowing me to create comprehensive and dynamic web applications.
-            </p>
-            <p class="skills__text" style="text-align: justify;">
-                My expertise includes Node.js for server-side programming, React for building interactive user interfaces, and JavaScript for enhancing web functionality. I am also skilled in Java and database management, ensuring robust and scalable applications.
-            </p>
+<!-- NAV -->
+<header>
+    <nav class="nav">
+        <a href="#" class="nav__logo">Keval Sheth</a>
+        <div class="nav__menu" id="nav-menu">
+            <ul class="nav__list">
+                <li><a href="#home" class="nav__link">Home</a></li>
+                <li><a href="#about" class="nav__link">About</a></li>
+                <li><a href="#skills" class="nav__link">Skills</a></li>
+                <li><a href="#experience" class="nav__link">Experience</a></li>
+                <li><a href="#projects" class="nav__link">Projects</a></li>
+                <li><a href="#education" class="nav__link">Education</a></li>
+                <li><a href="#contact" class="nav__link">Contact</a></li>
+            </ul>
         </div>
-        
-        <div>
-            <div class="skills__data">
-                <div class="skills__names">
-                    <i class='bx bxl-nodejs skills__icon'></i>
-                    <span class="skills__name">Node.js</span>
-                </div>
-                <div class="skills__bar skills__nodejs"></div>
-                <div>
-                    <span class="skills__percentage">70%</span>
-                </div>
-            </div>
-            <div class="skills__data">
-                <div class="skills__names">
-                    <i class='bx bxl-react skills__icon'></i>
-                    <span class="skills__name">React</span>
-                </div>
-                <div class="skills__bar skills__react"></div>
-                <div>
-                    <span class="skills__percentage">70%</span>
-                </div>
-            </div>
-            <div class="skills__data">
-                <div class="skills__names">
-                    <i class='bx bxl-javascript skills__icon'></i>
-                    <span class="skills__name">JavaScript</span>
-                </div>
-                <div class="skills__bar skills__js"></div>
-                <div>
-                    <span class="skills__percentage">80%</span>
-                </div>
-            </div>
-            <div class="skills__data">
-                <div class="skills__names">
-                    <i class="fab fa-java skills__icon"></i>
-                    <span class="skills__name">Java</span>
-                </div>
-                <div class="skills__bar skills__java"></div>
-                <div>
-                    <span class="skills__percentage">70%</span>
-                </div>
-            </div>
-            <div class="skills__data">
-                <div class="skills__names">
-                    <i class='bx bx-server skills__icon' ></i>
-                    <span class="skills__name">Database</span>
-                </div>
-                <div class="skills__bar skills__database"></div>
-                <div>
-                    <span class="skills__percentage">60%</span>
-                </div>
-            </div>
+        <div class="nav__toggle" id="nav-toggle"><i class='bx bx-menu'></i></div>
+    </nav>
+</header>
+
+<main>
+
+    <!-- HOME -->
+<section id="home">
+
+    <div class="hero__content">
+
+        <p class="hero__eyebrow">👋 Available for new opportunities</p>
+
+        <h1 class="hero__name">
+            Keval<br>
+            <span class="highlight">Sheth</span>
+        </h1>
+
+        <p class="hero__role">
+            Associate Java Developer · Full Stack Engineer
+        </p>
+
+        <p class="hero__summary">
+            Building real-time backend systems with Spring Boot, Kafka, and RabbitMQ.
+            1.5+ years delivering enterprise microservices, SSO integrations,
+            and full-stack web apps for production.
+        </p>
+
+        <div class="hero__actions">
+            <a href="#contact" class="btn btn--primary">
+                <i class='bx bx-envelope'></i> Get in touch
+            </a>
+
+            <a href="#projects" class="btn btn--outline">
+                <i class='bx bx-code-alt'></i> See my work
+            </a>
         </div>
+
+        <div class="hero__socials">
+            <a href="https://www.linkedin.com/in/ksheth25-" target="_blank" class="social-link">
+                <i class='bx bxl-linkedin'></i>
+            </a>
+
+            <a href="https://github.com/21IT147" target="_blank" class="social-link">
+                <i class='bx bxl-github'></i>
+            </a>
+
+            <a href="mailto:ksheth690@gmail.com" class="social-link">
+                <i class='bx bx-envelope'></i>
+            </a>
+        </div>
+
     </div>
+
+    <div class="hero__image">
+        <img src="assets/img/profile-2.jpeg" alt="Keval Sheth">
+    </div>
+
 </section>
 
-
-        <!--===== EXPERIENCE =====-->
-        <section class="experience section" id="experience">
-            <h2 class="section-title">Experience</h2>
-
-            <div class="experience__container bd-grid">
-                <div class="experience__content">
-                    <h3 class="experience__title">Internauts Infotech</h3>
-                    <span class="experience__subtitle">Backend Developer Intern - May 2023 - June 2023</span>
-                    <p class="experience__description">Developed and maintained backend services for various applications, working with a team to improve system performance and reliability.</p>
+    <!-- ABOUT -->
+    <section id="about">
+        <p class="section-label">About</p>
+        <h2 class="section-title">Who I am</h2>
+        <div class="about__grid">
+            <div class="about__card">
+                <div class="about__stat">
+                    <div class="about__stat-value">1.5+</div>
+                    <div class="about__stat-label">Years of experience</div>
                 </div>
-                <div class="experience__content">
-                    <h3 class="experience__title">Axire Infotech</h3>
-                    <span class="experience__subtitle">Full Stack Developer - May 2024 - Present</span>
-                    <p class="experience__description">Designed and implemented full-stack solutions for clients, collaborating closely with frontend and backend teams to deliver high-quality software products.</p>
+                <div class="about__stat">
+                    <div class="about__stat-value">Top 1%</div>
+                    <div class="about__stat-label">NPTEL DBMS nationally</div>
                 </div>
-            </div>
-        </section>
-
-        <!--===== EDUCATION =====-->
-        <section class="education section" id="education">
-            <h2 class="section-title">Education</h2>
-
-            <div class="education__container bd-grid">
-                <div class="education__content">
-                    <h3 class="education__title">Sett R.J.J</h3>
-                    <span class="education__subtitle">SSC - April 2019</span>
-                    <span class="education__percentage">Percentage: 89.66% - Highest in Maths: 97</span>
-                </div>
-                <div class="education__content">
-                    <h3 class="education__title">Sett R.J.J</h3>
-                    <span class="education__subtitle">HSC - May 2021</span>
-                    <span class="education__percentage">Percentage: 89.34% - Highest in Maths: 94</span>
+                <div class="about__stat">
+                    <div class="about__stat-value">#1</div>
+                    <div class="about__stat-label">University coding contest</div>
                 </div>
             </div>
-        </section>
+            <div class="about__text">
+                <p>
+                    I'm a Full Stack Developer turned Associate Java Developer, currently at Navaera Worldwide in Vadodara. 
+                    My day-to-day involves building real-time microservices using Spring Boot, Kafka, RabbitMQ, and Apache Storm, 
+                    while integrating enterprise tools like Magnolia CMS and Apache Unomi.
+                </p>
+                <p>
+                    Before that, I built full-stack products at Axire Infotech using React.js, Node.js, Supabase, and Zustand — 
+                    shipping features end-to-end in agile sprints. I'm comfortable across the stack: backend architecture, 
+                    frontend UIs, cloud deployments on AWS ECS, and auth systems using SAML and OIDC.
+                </p>
+                <p>
+                    I graduated from CHARUSAT with a B.Tech in Information Technology and ranked top 1% nationally in the 
+                    NPTEL DBMS exam. I care about writing code that's both functional and maintainable, and I enjoy 
+                    working at the intersection of performance and developer experience.
+                </p>
+            </div>
+        </div>
+    </section>
 
-        <!--===== WORK =====-->
-<section class="work section" id="work">
-    <h2 class="section-title">Work</h2>
+    <!-- SKILLS -->
+    <section id="skills">
+        <p class="section-label">Skills</p>
+        <h2 class="section-title">Technical toolkit</h2>
 
-    <div class="work__container bd-grid">
-        <div class="work__img" onclick="openModal('work1')">
-            <img src="assets/img/work1.jpg" alt="">
+        <div class="skills__category">
+            <p class="skills__category-title">Backend</p>
+            <div class="skills__grid">
+                <div class="skill-chip">Spring Boot</div>
+                <div class="skill-chip">Node.js</div>
+                <div class="skill-chip">Express.js</div>
+                <div class="skill-chip">Kafka</div>
+                <div class="skill-chip">RabbitMQ</div>
+                <div class="skill-chip">Apache Storm</div>
+                <div class="skill-chip">Apache Unomi</div>
+                <div class="skill-chip">Netty</div>
+                <div class="skill-chip">REST APIs</div>
+            </div>
         </div>
-        <div class="work__img" onclick="openModal('work2')">
-            <img src="assets/img/work2.jpg" alt="">
-        </div>
-        <div class="work__img" onclick="openModal('work3')">
-            <img src="assets/img/work3.jpg" alt="">
-        </div>
-        <div class="work__img" onclick="openModal('work4')">
-            <img src="assets/img/work4.jpg" alt="">
-        </div>
-        <div class="work__img" onclick="openModal('work5')">
-            <img src="assets/img/work5.jpg" alt="">
-        </div>
-        <div class="work__img" onclick="openModal('work6')">
-            <img src="assets/img/work6.jpg" alt="">
-        </div>
-        <!-- More work images can be added here -->
-    </div>
-</section>
 
-<!-- Modal for My Profile Space -->
-<div id="work1-modal" class="modal">
-    <div class="modal-content">
-        <span class="close" onclick="closeModal('work1')">&times;</span>
-        <div class="modal-img">
-            <img src="assets/img/work1.jpg" alt="">
+        <div class="skills__category">
+            <p class="skills__category-title">Frontend</p>
+            <div class="skills__grid">
+                <div class="skill-chip">React.js</div>
+                <div class="skill-chip">React Native</div>
+                <div class="skill-chip">TypeScript</div>
+                <div class="skill-chip">Zustand</div>
+                <div class="skill-chip">WebSockets</div>
+                <div class="skill-chip">HTML5</div>
+                <div class="skill-chip">CSS3</div>
+            </div>
         </div>
-        <div class="modal-details">
-            <h2>My Profile Space</h2>
-            <p>Platform for users who want to create their own portfolio from their details.</p>
-            <p>Tech Stack: ReactJS, Supabase, TypeScript</p>
-            <p><a href="https://github.com/RutvikJR/my-profile-space-admin" class="github-link" target="_blank">GitHub Repository</a></p>
+
+        <div class="skills__category">
+            <p class="skills__category-title">Databases & Cloud</p>
+            <div class="skills__grid">
+                <div class="skill-chip">MongoDB</div>
+                <div class="skill-chip">MS SQL Server</div>
+                <div class="skill-chip">MySQL</div>
+                <div class="skill-chip">Supabase</div>
+                <div class="skill-chip">AWS ECS</div>
+                <div class="skill-chip">Docker</div>
+                <div class="skill-chip">Linux</div>
+                <div class="skill-chip">Git</div>
+            </div>
         </div>
-    </div>
-</div>
 
-<!-- Modal for Open Source Weeknd -->
-<div id="work2-modal" class="modal">
-    <div class="modal-content">
-        <span class="close" onclick="closeModal('work2')">&times;</span>
-        <div class="modal-img">
-            <img src="assets/img/work2.jpg" alt="">
+        <div class="skills__category">
+            <p class="skills__category-title">Languages & Auth</p>
+            <div class="skills__grid">
+                <div class="skill-chip">Java</div>
+                <div class="skill-chip">JavaScript</div>
+                <div class="skill-chip">TypeScript</div>
+                <div class="skill-chip">Python</div>
+                <div class="skill-chip">Dart</div>
+                <div class="skill-chip">SQL</div>
+                <div class="skill-chip">SAML / OIDC</div>
+                <div class="skill-chip">Magnolia CMS</div>
+            </div>
         </div>
-        <div class="modal-details">
-            <h2>Open Source Weeknd</h2>
-            <p>Platform for users who want to create custom events as well as join different events such as webinars and TED Talks.</p>
-            <p>Tech Stack: ReactJS, NodeJS, Express, MongoDB</p>
-            <p><a href="https://github.com/21IT147/OpenSourceWeekend" class="github-link" target="_blank">GitHub Repository</a></p>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section id="experience">
+        <p class="section-label">Experience</p>
+        <h2 class="section-title">Where I've worked</h2>
+        <div class="timeline">
+
+            <div class="timeline-item timeline-item--current">
+                <span class="timeline-badge">Current</span>
+                <div class="timeline-company">Navaera Worldwide</div>
+                <div class="timeline-role">Associate Java Developer</div>
+                <div class="timeline-period">May 2025 – Present · Vadodara</div>
+                <p class="timeline-desc">
+                    Building real-time microservices with Spring Boot, Kafka, RabbitMQ, and Apache Storm. 
+                    Integrating Magnolia CMS and Apache Unomi for enterprise content and personalization. 
+                    Implemented SAML & OIDC SSO; optimizing MS SQL Server queries and Docker-based deployments on Linux.
+                </p>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-company">Navaera Worldwide</div>
+                <div class="timeline-role">Java Developer Intern</div>
+                <div class="timeline-period">Jan 2025 – Apr 2025 · Vadodara</div>
+                <p class="timeline-desc">
+                    Applied Spring Boot in production projects; owned feature delivery and communicated progress 
+                    to stakeholders in agile sprints.
+                </p>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-company">Axire Infotech</div>
+                <div class="timeline-role">Full Stack Developer</div>
+                <div class="timeline-period">May 2023 – Jan 2024 · Ahmedabad</div>
+                <p class="timeline-desc">
+                    Delivered end-to-end web applications using React.js, Node.js, Zustand, and Supabase. 
+                    Shipped features in agile sprints with cross-functional teams.
+                </p>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-company">Internauts InfoTech</div>
+                <div class="timeline-role">MERN Stack Intern</div>
+                <div class="timeline-period">May 2023 – Jun 2023 · Ahmedabad</div>
+                <p class="timeline-desc">
+                    Built scalable full-stack apps using MongoDB, Express.js, React, and Node.js. 
+                    Contributed to open-source event-driven systems.
+                </p>
+            </div>
+
         </div>
-    </div>
-</div>
+    </section>
 
-<!-- Modal for Text Extraction App -->
-<div id="work3-modal" class="modal">
-    <div class="modal-content">
-        <span class="close" onclick="closeModal('work3')">&times;</span>
-        <div class="modal-img">
-            <img src="assets/img/work3.jpg" alt="">
+    <!-- PROJECTS -->
+    <section id="projects">
+        <p class="section-label">Projects</p>
+        <h2 class="section-title">Things I've built</h2>
+        <div class="projects__grid">
+
+            <div class="project-card">
+                <div class="project-card__title">Data Generator Agent</div>
+                <p class="project-card__desc">
+                    Generates and streams historical data from source to destination in real time, maintaining a 250ms SLA. 
+                    Uses Netty channels for connectivity; data processed via Apache Storm topologies, published to RabbitMQ.
+                </p>
+                <div class="project-card__tags">
+                    <span class="tag">Spring Boot</span>
+                    <span class="tag">Netty</span>
+                    <span class="tag">RabbitMQ</span>
+                    <span class="tag">Apache Storm</span>
+                    <span class="tag">MS SQL</span>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-card__title">Real-Time Interactive Whiteboard</div>
+                <p class="project-card__desc">
+                    Collaborative whiteboard app with real-time multi-user sync via WebSockets, enabling teams to 
+                    share and view live drawing content simultaneously.
+                </p>
+                <div class="project-card__tags">
+                    <span class="tag">React.js</span>
+                    <span class="tag">Node.js</span>
+                    <span class="tag">WebSockets</span>
+                    <span class="tag">MongoDB</span>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-card__title">Text Extraction & Translation with OCR</div>
+                <p class="project-card__desc">
+                    Reads images and documents, extracts text via OCR, translates content into the user's chosen language, 
+                    and summarizes selected text — all through a unified multi-service pipeline.
+                </p>
+                <div class="project-card__tags">
+                    <span class="tag">React.js</span>
+                    <span class="tag">Spring Boot</span>
+                    <span class="tag">Python FastAPI</span>
+                    <span class="tag">MS SQL</span>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-card__title">My Profile Space</div>
+                <p class="project-card__desc">
+                    Portfolio creator platform with real-time Supabase auth and dynamic page generation. 
+                    Users can build and publish their own portfolio from their details.
+                </p>
+                <div class="project-card__tags">
+                    <span class="tag">ReactJS</span>
+                    <span class="tag">TypeScript</span>
+                    <span class="tag">Supabase</span>
+                </div>
+            </div>
+
         </div>
-        <div class="modal-details">
-            <h2>Text Extraction App</h2>
-            <p>Application to extract text from any image in more than 150 languages and then share the extracted file via any platform.</p>
-            <p>Tech Stack: React Native, NodeJS, MongoDB</p>
-            <p><a href="https://github.com/21IT147/Text_Extraction_app" class="github-link" target="_blank">GitHub Repository</a></p>
+    </section>
+
+    <!-- EDUCATION -->
+    <section id="education">
+        <p class="section-label">Education</p>
+        <h2 class="section-title">Academic background</h2>
+        <div class="edu__grid">
+
+            <div class="edu-card">
+                <div class="edu-card__degree">B.Tech · Information Technology</div>
+                <div class="edu-card__school">Charotar University of Science & Technology (CHARUSAT)</div>
+                <div class="edu-card__period">Oct 2021 – May 2025</div>
+                <div class="edu-card__highlight">
+                    <span>Top 1%</span> nationally in NPTEL DBMS exam · <span>1st place</span> university coding contest
+                </div>
+            </div>
+
+            <div class="edu-card">
+                <div class="edu-card__degree">HSC</div>
+                <div class="edu-card__school">Sett R.J.J</div>
+                <div class="edu-card__period">May 2021</div>
+                <div class="edu-card__highlight">
+                    <span>89.34%</span> · Highest in Maths: <span>94</span>
+                </div>
+            </div>
+
+            <div class="edu-card">
+                <div class="edu-card__degree">SSC</div>
+                <div class="edu-card__school">Sett R.J.J</div>
+                <div class="edu-card__period">April 2019</div>
+                <div class="edu-card__highlight">
+                    <span>89.66%</span> · Highest in Maths: <span>97</span>
+                </div>
+            </div>
+
         </div>
-    </div>
-</div>
 
-<!-- Modal for My Fitness Station -->
-<div id="work4-modal" class="modal">
-    <div class="modal-content">
-        <span class="close" onclick="closeModal('work4')">&times;</span>
-        <div class="modal-img">
-            <img src="assets/img/work4.jpg" alt="">
+        <div style="margin-top: 2.5rem;">
+            <p class="section-label" style="margin-bottom: 1rem;">Certifications</p>
+            <div class="cert__list">
+                <div class="cert-chip"><i class='bx bxl-aws'></i> AWS ECS – Amazon</div>
+                <div class="cert-chip"><i class='bx bxl-docker'></i> Docker for Absolute Beginners – KodeKloud</div>
+            </div>
         </div>
-        <div class="modal-details">
-            <h2>My Fitness Station</h2>
-            <p>Web application with basic features related to daily fitness goals.</p>
-            <p>Tech Stack: HTML, CSS, JavaScript</p>
-            <p><a href="https://github.com/21IT147/MY_FITNESS_STATION" class="github-link" target="_blank">GitHub Repository</a></p>
-        </div>
-    </div>
-</div>
+    </section>
 
-<!-- Modal for Quiz App -->
-<div id="work5-modal" class="modal">
-    <div class="modal-content">
-        <span class="close" onclick="closeModal('work5')">&times;</span>
-        <div class="modal-img">
-            <img src="assets/img/work5.jpg" alt="">
-        </div>
-        <div class="modal-details">
-            <h2>Quiz App</h2>
-            <p>Platform for users who want to play quizzes and see results.</p>
-            <p>Tech Stack: HTML, CSS, JavaScript</p>
-            <p><a href="https://github.com/21IT147/QuizApp" class="github-link" target="_blank">GitHub Repository</a></p>
-        </div>
-    </div>
-</div>
-
-<!-- Modal for News Application -->
-<div id="work6-modal" class="modal">
-    <div class="modal-content">
-        <span class="close" onclick="closeModal('work6')">&times;</span>
-        <div class="modal-img">
-            <img src="assets/img/work6.jpg" alt="">
-        </div>
-        <div class="modal-details">
-            <h2>Invoice Pdf Generator</h2>
-            <p>Mobile app to generate pdf for your incoice generated at the store.</p>
-            <p>Tech Stack: Flutter and LocalStorage</p>
-            <p><a href="https://github.com/21IT147/InvoicePdfMaker" class="github-link" target="_blank">GitHub Repository</a></p>
-        </div>
-    </div>
-</div>
-
-
-
-
-        <!--===== CONTACT =====-->
-        <section class="contact section" id="contact">
-            <h2 class="section-title">Contact</h2>
-
-            <div class="contact__container bd-grid">
-                <form action="https://formspree.io/f/your-form-id" method="POST" class="contact__form" id="contact-form">
-                    <input type="hidden" name="_subject" value="New submission!">
-
-                    <div class="contact__inputs">
-                        <input type="text" name="name" placeholder="Name" class="contact__input" required>
-                        <input type="email" name="email" placeholder="Email" class="contact__input" required>
-                    </div>
-
-                    <textarea name="message" placeholder="Message" class="contact__input" required></textarea>
-
-                    <input type="submit" value="Send" class="contact__button button">
-                </form>
-                <div class="contact__info">
-                    <h3 class="contact__subtitle">Get in touch with me</h3>
-                    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=ksheth630@gmail.com" target="_blank">
-                        <i class="bx bx-envelope skills__icon"></i>
+    <!-- CONTACT -->
+    <section id="contact">
+        <p class="section-label">Contact</p>
+        <h2 class="section-title">Let's connect</h2>
+        <div class="contact__grid">
+            <div class="contact__info">
+                <p>
+                    I'm open to backend, full-stack, or Java developer roles. Feel free to reach out — 
+                    whether it's a job opportunity, a project idea, or just to say hi.
+                </p>
+                <div class="contact__links">
+                    <a href="mailto:ksheth690@gmail.com" class="contact__link">
+                        <i class='bx bx-envelope'></i> ksheth690@gmail.com
                     </a>
-                    <span class="contact__description">ksheth630@gmail.com</span>
+                    <a href="tel:+919327216630" class="contact__link">
+                        <i class='bx bx-phone'></i> +91-9327216630
+                    </a>
+                    <a href="https://www.linkedin.com/in/ksheth25-" target="_blank" class="contact__link">
+                        <i class='bx bxl-linkedin'></i> linkedin.com/in/ksheth25-
+                    </a>
+                    <a href="https://github.com/keval-25" target="_blank" class="contact__link">
+                        <i class='bx bxl-github'></i> github.com/keval-25
+                    </a>
                 </div>
-                
             </div>
-        </section>
-    </main>
-
-    <!--===== FOOTER =====-->
-    <footer class="footer">
-        <p class="footer__title">Keval Sheth</p>
-        <div class="footer__social">
-            <a href="https://www.linkedin.com/in/keval-sheth-82a5a0230" class="footer__icon"><i class='bx bxl-linkedin' ></i></a>
-            <a href="https://www.instagram.com/_keval_25_/" class="footer__icon"><i class='bx bxl-instagram' ></i></a>
-            <a href="https://github.com/21IT147" class="footer__icon"><i class='bx bxl-github' ></i></a>
+            <form class="contact__form" id="contact-form" action="https://formspree.io/f/your-form-id" method="POST">
+                <input type="text" name="name" placeholder="Your name" class="contact__input" required>
+                <input type="email" name="email" placeholder="Your email" class="contact__input" required>
+                <textarea name="message" placeholder="Your message" class="contact__input" rows="5" required></textarea>
+                <button type="submit" class="btn btn--primary" style="width: fit-content;">
+                    <i class='bx bx-send'></i> Send message
+                </button>
+            </form>
         </div>
-        <p>© 2023 Keval. All right reserved</p>
-    </footer>
+    </section>
 
-    <!--===== SCROLL REVEAL =====-->
-    <script src="https://unpkg.com/scrollreveal"></script>
+</main>
 
-    <!--===== MAIN JS =====-->
-    <script src="assets/js/main.js"></script>
-    <script>
-        function openModal(modalId) {
-            document.getElementById(modalId + '-modal').style.display = 'block';
-        }
+<!-- FOOTER -->
+<footer>
+    <div class="footer__socials">
+        <a href="https://www.linkedin.com/in/ksheth25-" target="_blank" class="footer__social"><i class='bx bxl-linkedin'></i></a>
+        <a href="https://github.com/21IT147" target="_blank" class="footer__social"><i class='bx bxl-github'></i></a>
+        <a href="mailto:ksheth690@gmail.com" class="footer__social"><i class='bx bx-envelope'></i></a>
+    </div>
+</footer>
 
-        function closeModal(modalId) {
-            document.getElementById(modalId + '-modal').style.display = 'none';
-        }
+<script src="https://unpkg.com/scrollreveal"></script>
+<script>
+    // Mobile nav toggle
+    const toggle = document.getElementById('nav-toggle');
+    const menu = document.getElementById('nav-menu');
+    toggle.addEventListener('click', () => menu.classList.toggle('open'));
 
-        window.onclick = function(event) {
-            if (event.target.className === 'modal') {
-                closeModal('work1');
-                closeModal('work2');
-            }
-        }
-    </script>
+    // Close nav on link click (mobile)
+    document.querySelectorAll('.nav__link').forEach(link => {
+        link.addEventListener('click', () => menu.classList.remove('open'));
+    });
+
+    // ScrollReveal
+    const sr = ScrollReveal({ origin: 'bottom', distance: '30px', duration: 600, delay: 100, reset: false });
+    sr.reveal('.hero__eyebrow, .hero__name, .hero__role, .hero__summary, .hero__actions, .hero__socials', { interval: 80 });
+    sr.reveal('.about__card, .about__text', { interval: 100 });
+    sr.reveal('.skills__category', { interval: 100 });
+    sr.reveal('.timeline-item', { interval: 120 });
+    sr.reveal('.project-card', { interval: 100 });
+    sr.reveal('.edu-card', { interval: 100 });
+    sr.reveal('.contact__info, .contact__form', { interval: 100 });
+</script>
+
 </body>
 </html>
- 

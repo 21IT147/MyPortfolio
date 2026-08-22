@@ -1,0 +1,82 @@
+# ==========================================
+# Full-Stack Portfolio Project .gitignore
+# ==========================================
+
+# ── 1. IDE & Editor Files ──
+.idea/
+*.iml
+*.ipr
+*.iws
+.vscode/
+.settings/
+.classpath
+.project
+.factorypath
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
+*~
+
+# ── 2. Gradle Build Outputs & Cache ──
+.gradle/
+**/build/
+build/
+out/
+gradle-app.setting
+!gradle/wrapper/gradle-wrapper.jar
+!gradle/wrapper/gradle-wrapper.properties
+
+# ── 3. Maven Build Outputs ──
+**/target/
+target/
+*.jar
+*.war
+*.ear
+
+# ── 4. Node.js & Vite / Frontend Outputs ──
+**/node_modules/
+node_modules/
+**/dist/
+dist/
+.next/
+.vite/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+.pnpm-debug.log*
+
+# ── 5. Local Tools & Temporary Files ──
+tools/
+*.zip
+*.tar.gz
+*.tmp
+*.temp
+*.log
+
+# ── 6. Environment Files & Credentials ──
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+*.pem
+
+# ── 7. Database Files ──
+*.mv.db
+*.trace.db
+*.db
+*.sqlite
+*.sqlite3
+
+# ── 8. OS Generated Files ──
+.DS_Store
+.DS_Store?
+._*
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini

@@ -1,0 +1,23 @@
+# Gradle & Build Outputs
+.gradle/
+build/
+out/
+!gradle/wrapper/gradle-wrapper.jar
+!gradle/wrapper/gradle-wrapper.properties
+
+# IDE Files
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# Maven Legacy & Binaries
+target/
+*.jar
+*.war
+
+# Environment & Logs
+.env
+*.log
+*.mv.db
+*.trace.db

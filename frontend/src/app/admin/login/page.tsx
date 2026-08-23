@@ -4,7 +4,7 @@ import { loginAdmin, loginGoogleAdmin } from '@/lib/api';
 import { ShieldCheck, Lock, User, AlertCircle, ArrowLeft } from 'lucide-react';
 
 export default function AdminLoginPage() {
-  const [username, setUsername] = useState('admin');
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
@@ -20,7 +20,7 @@ export default function AdminLoginPage() {
       navigate('/admin/dashboard');
     } catch (err: unknown) {
       console.error(err);
-      setErrorMsg('Invalid admin credentials. Default credentials: admin / admin123');
+      setErrorMsg('Invalid username or password.');
     } finally {
       setLoading(false);
     }
@@ -80,7 +80,6 @@ export default function AdminLoginPage() {
                   className="w-full pl-10 pr-4 py-3 rounded-xl bg-gray-900/80 border border-gray-800 text-white placeholder-gray-500 text-sm focus:outline-none focus:border-purple-500 transition-colors"
                 />
               </div>
-              <p className="text-[11px] text-gray-500 mt-1">Default Initial Password: <code className="text-purple-400">admin123</code></p>
             </div>
 
             <button

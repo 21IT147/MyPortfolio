@@ -42,6 +42,11 @@ public class PublicPortfolioController {
     }
 
     // Default Public Endpoints
+    @GetMapping("/health")
+    public ResponseEntity<Map<String, Object>> healthCheck() {
+        return ResponseEntity.ok(Map.of("status", "UP", "timestamp", System.currentTimeMillis()));
+    }
+
     @GetMapping("/profile")
     public ResponseEntity<ProfileInfo> getProfile() {
         return profileInfoRepository.findFirstByOrderByIdAsc()

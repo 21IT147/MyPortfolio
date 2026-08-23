@@ -1,10 +1,10 @@
 package com.keval.portfolio.repository;
 
 import com.keval.portfolio.model.ContactMessage;
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.ListCrudRepository;
 import java.util.List;
 
-public interface ContactMessageRepository extends JpaRepository<ContactMessage, Long> {
+public interface ContactMessageRepository extends ListCrudRepository<ContactMessage, Long> {
     List<ContactMessage> findAllByOrderByReceivedAtDesc();
     List<ContactMessage> findByUserUsernameOrderByReceivedAtDesc(String username);
     List<ContactMessage> findByUserIdOrderByReceivedAtDesc(Long userId);

@@ -1,11 +1,11 @@
 package com.keval.portfolio.repository;
 
 import com.keval.portfolio.model.Note;
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.ListCrudRepository;
 import java.util.List;
 import java.util.Optional;
 
-public interface NoteRepository extends JpaRepository<Note, Long> {
+public interface NoteRepository extends ListCrudRepository<Note, Long> {
     List<Note> findAllByOrderByCreatedAtDesc();
     List<Note> findByPublishedTrueOrderByCreatedAtDesc();
     Optional<Note> findBySlug(String slug);

@@ -25,13 +25,12 @@
 build/
 out/
 gradle-app.setting
-!gradle/wrapper/gradle-wrapper.jar
-!gradle/wrapper/gradle-wrapper.properties
-
 # ── 3. Maven Build Outputs ──
 **/target/
 target/
 *.jar
+!**/gradle/wrapper/gradle-wrapper.jar
+!**/gradle/wrapper/gradle-wrapper.properties
 *.war
 *.ear
 

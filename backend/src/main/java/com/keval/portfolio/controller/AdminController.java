@@ -63,6 +63,49 @@ public class AdminController {
         return ResponseEntity.ok(profileInfoRepository.save(profileInfo));
     }
 
+    // Cloudinary Resume Direct Upload
+    @PostMapping("/resume/upload")
+    public ResponseEntity<?> uploadResumeToCloudinary(@RequestParam("file") org.springframework.web.multipart.MultipartFile file) {
+        if (file.isEmpty()) {
+            return ResponseEntity.badRequest().body(Map.of("error", "No file selected"));
+        }
+        try {
+            String cloudinaryUrl = System.getenv("CLOUDINARY_URL");
+            com.cloudinary.Cloudinary cloudinary;
+            if (cloudinaryUrl != null && !cloudinaryUrl.isBlank()) {
+                cloudinary = new com.cloudinary.Cloudinary(cloudinaryUrl);
+            } else {
+                cloudinary = new com.cloudinary.Cloudinary(com.cloudinary.utils.ObjectUtils.asMap(
+                    "cloud_name", "wrvvyzjz",
+                    "api_key", System.getenv("CLOUDINARY_API_KEY") != null ? System.getenv("CLOUDINARY_API_KEY") : "123456789",
+                    "api_secret", System.getenv("CLOUDINARY_API_SECRET") != null ? System.getenv("CLOUDINARY_API_SECRET") : "secret"
+                ));
+            }
+
+            Map<?, ?> uploadResult = cloudinary.uploader().upload(file.getBytes(), com.cloudinary.utils.ObjectUtils.asMap(
+                "resource_type", "auto",
+                "public_id", "keval_sheth_resume",
+                "overwrite", true
+            ));
+
+            String secureUrl = (String) uploadResult.get("secure_url");
+            if (secureUrl == null) {
+                secureUrl = (String) uploadResult.get("url");
+            }
+
+            ProfileInfo existing = profileInfoRepository.findAll().stream().findFirst().orElse(null);
+            if (existing != null) {
+                existing.setResumeUrl(secureUrl);
+                profileInfoRepository.save(existing);
+            }
+
+            return ResponseEntity.ok(Map.of("url", secureUrl));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.internalServerError().body(Map.of("error", "Cloudinary upload failed: " + e.getMessage()));
+        }
+    }
+
     // Skills CRUD
     @GetMapping("/skills")
     public ResponseEntity<List<Skill>> getAllSkills() {

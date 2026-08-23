@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { fetchPublicProfile, updateAdminProfile } from '@/lib/api';
+import { fetchPublicProfile, updateAdminProfile, uploadAdminResume } from '@/lib/api';
 import { ProfileInfo } from '@/types';
 import { Save, CheckCircle2, AlertCircle, Palette, UploadCloud, FileText, ExternalLink, Loader2, Settings } from 'lucide-react';
 
@@ -76,6 +76,20 @@ export default function AdminProfilePage() {
     setMsg(null);
 
     try {
+      // Primary Method: Upload via backend API using CLOUDINARY_URL
+      try {
+        const res = await uploadAdminResume(file);
+        if (res.url) {
+          setProfile((prev) => ({ ...prev, resumeUrl: res.url }));
+          setMsg({ type: 'success', text: 'Resume uploaded successfully to Cloudinary & saved to profile!' });
+          setUploadingResume(false);
+          return;
+        }
+      } catch (backendErr) {
+        console.warn('Backend Cloudinary upload failed, trying direct client upload fallback...', backendErr);
+      }
+
+      // Fallback Method: Upload directly to Cloudinary client-side
       const formData = new FormData();
       formData.append('file', file);
       formData.append('upload_preset', uploadPreset.trim());
@@ -99,7 +113,7 @@ export default function AdminProfilePage() {
         setProfile((prev) => ({ ...prev, resumeUrl: data.secure_url }));
         setMsg({ type: 'success', text: 'Resume uploaded successfully to Cloudinary! Click "Save Profile" below to persist.' });
       } else {
-        throw new Error(data.error?.message || 'Cloudinary upload failed. Check Cloud Name and Unsigned Preset.');
+        throw new Error(data.error?.message || 'Cloudinary upload failed. Ensure CLOUDINARY_URL is set in backend or check Cloud Name.');
       }
     } catch (err: unknown) {
       console.error(err);

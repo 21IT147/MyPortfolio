@@ -140,6 +140,15 @@ export const updateAdminProfile = async (data: ProfileInfo): Promise<ProfileInfo
   return res.data;
 };
 
+export const uploadAdminResume = async (file: File): Promise<{ url: string }> => {
+  const formData = new FormData();
+  formData.append('file', file);
+  const res = await adminClient.post<{ url: string }>('/resume/upload', formData, {
+    headers: { 'Content-Type': 'multipart/form-data' },
+  });
+  return res.data;
+};
+
 // Skills CRUD
 export const fetchAdminSkills = async (): Promise<Skill[]> => {
   const res = await adminClient.get<Skill[]>('/skills');

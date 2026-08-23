@@ -1,6 +1,7 @@
 package com.keval.portfolio.model;
 
 import jakarta.persistence.*;
+import org.springframework.data.mongodb.core.mapping.Document;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -8,12 +9,14 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "notes")
+@Document(collection = "notes")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class Note {
 
     @Id
+    @org.springframework.data.annotation.Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 

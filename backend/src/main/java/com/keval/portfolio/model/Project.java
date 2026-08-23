@@ -1,18 +1,21 @@
 package com.keval.portfolio.model;
 
 import jakarta.persistence.*;
+import org.springframework.data.mongodb.core.mapping.Document;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "projects")
+@Document(collection = "projects")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class Project {
 
     @Id
+    @org.springframework.data.annotation.Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
